@@ -35,5 +35,6 @@ router.get('/course', verifyToken ,AdminCtl.viewcourse)
 router.delete('/deletecourse', verifyToken ,AdminCtl.deletecourse)
 router.post('/editcourse', verifyToken ,AdminCtl.editcourse)
 router.put('/editedcourse', verifyToken ,courseimg ,AdminCtl.editedcourse)
+router.get('/alluser', admin, AdminCtl.alluser)
 
 module.exports = router

@@ -1,0 +1,39 @@
+.section3{
+    width: 100%;
+    padding: 100px 0px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.section3-box{
+    width: 1270px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.sec-img{
+    width: 48%;
+    height: 450px;
+    background: url(../../Images/about.jpg);
+}
+.sec3-content{
+    width: 48%;
+    height: 450px;
+    display: flex;
+    align-items: start;
+    flex-direction: column;
+}
+.sec3-content h3{
+    font-size: 35px;
+}
+.sec3-content p{
+    margin: 15px 0px;
+}
+.sec3-content button{
+    width: 176px;
+    height: 58px;
+    background-color: #05bccc;
+    color: white;
+    border: none;
+    margin: 15px 0px;
+}

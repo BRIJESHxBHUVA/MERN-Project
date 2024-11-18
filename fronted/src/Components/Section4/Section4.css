@@ -1,0 +1,44 @@
+.section4{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.section4 h3{
+    font-size: 40px;
+}
+.section4 .sec4-box{
+    width: 1270px;
+    margin: 70px 0px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 30px;
+}
+.section4 .card{
+    max-width: 408px;
+    
+}
+.card .card-img-top{
+    height: 300px;  
+}
+.section4 .starts{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+}
+.section4 .card-body{
+    background-color: #f0fcfc;
+}
+.starts i{
+    color: #05bccc;
+}
+.card-body .card-title{
+    font-size: 18px;
+}
+.card .card-foot{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 5px;
+}

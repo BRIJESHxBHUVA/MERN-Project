@@ -1,5 +1,6 @@
 const Admin = require('../Model/AdminSchema')
 const Course = require('../Model/CourseSchema')
+const User = require('../Model/UserSchema')
 const moment = require('moment')
 const fs = require('fs')
 const path = require('path')
@@ -145,5 +146,17 @@ module.exports.editedcourse = async (req, res)=> {
         res.status(200).json({success: true, message: 'Course edited successfully.', data})
     } catch (error) {
         res.status(400).json({success: false, message: 'Course not edited', error})
+    }
+}
+
+module.exports.alluser = async (req, res)=> {
+    try {
+        const data = await User.find({})
+        if(data.lenght <= 0){
+            res.status(404).json({success: false, message: 'User not found'})
+        }
+        res.status(200).json({success: true, message: 'User find successfully', data})
+    } catch (error) {
+        res.status(400).json({success: false, message: 'User render error : ', error})
     }
 }
