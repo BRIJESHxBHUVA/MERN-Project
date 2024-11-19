@@ -15,6 +15,10 @@ app.use(cors({
 app.use('/admin', require('./Routes/AdminRoutes'))
 app.use('/user', require('./Routes/UserRoutes'))
 
+app.use('Images/Admin', express.static(path.join(__dirname, 'Images/Admin')))
+app.use('Images/Course', express.static(path.join(__dirname, 'Images/Course')))
+app.use('Images/User', express.static(path.join(__dirname, 'Images/User')))
+
 app.listen(port, (err)=>{
     if(err){
         console.log('Error coming while starting server')

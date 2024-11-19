@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react'
 import './Header.css'
-import dp from '../../Images/carousel-1.jpg'
 
-const Header = ({setProfile}) => {
+
+const Header = () => {
 
   const [data, setData] = useState({})
 
@@ -34,10 +34,13 @@ const Header = ({setProfile}) => {
             <a className="nav-link active" aria-current="page" href="#">HOME</a>
           </li>
           <li className="nav-item">
-            <a className="nav-link" href="#">ABOUT</a>
+            <a className="nav-link" href="#">USERS</a>
           </li>
           <li className="nav-item">
             <a className="nav-link" href="#">COURSES</a>
+          </li>
+          <li className="nav-item">
+            <a className="nav-link" href="#">ADD COURSES</a>
           </li>
           <li className="nav-item">
             <a className="nav-link" href="#">CONTACT</a>
@@ -47,7 +50,7 @@ const Header = ({setProfile}) => {
        
       </div>
 
-      <div className="profile me-3" onClick={()=> {setProfile(true)}}>
+      <div className="profile me-3">
         <img src={`http://localhost:5000/Images/User/${data.image}`} alt="User" />
       </div>
    

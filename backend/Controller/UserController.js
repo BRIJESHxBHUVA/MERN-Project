@@ -8,7 +8,7 @@ const jwt = require('jsonwebtoken')
 
 module.exports.signup = async (req, res)=> {
     try {
-        const useremail = User.findOne({email: req.body.email})
+        const useremail = await User.findOne({email: req.body.email})
         if(useremail){
             return res.status(400).json({success: false, message: 'Email address already exists'})
         }
@@ -21,7 +21,7 @@ module.exports.signup = async (req, res)=> {
         res.status(201).json({success: true, message: 'User regestration successfully', data})
 
     } catch (error) {
-        res.status(400).json({success: false, message: 'User registration error'})
+        res.status(400).json({success: false, message: 'User registration error', error})
     }
 }
 
