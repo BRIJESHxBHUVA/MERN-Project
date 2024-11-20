@@ -1,11 +1,12 @@
 import React, { useState } from 'react'
 import './Login.css'
-// import {useSelector, useDispatch} from 'react-redux'
+import {useSelector, useDispatch} from 'react-redux'
 import {useNavigate} from 'react-router-dom'
+import { addAdmin, adminLogin } from '../../Redux/adminSlice'
 
 const Login = () => {
 
-    // const dispatch = useDispatch()
+    const dispatch = useDispatch()
     const navigate = useNavigate()
     const [login, setLogin] = useState(false)
 
@@ -22,7 +23,7 @@ const Login = () => {
       image: ''
     })
 
-    // const {loading, error} = useSelector((state)=> state.user)
+    const {loading, error} = useSelector((state)=> state.admin)
 
 
     const handleLogin = (e)=> {
@@ -36,10 +37,10 @@ const Login = () => {
     const HandleLogin = async (e)=> {
       e.preventDefault();
       try {
-        // const success = await dispatch(userLogin(usersLogin))
-        // if(success){
-        //   navigate('/e-learning')
-        // }
+        const success = await dispatch(adminLogin(usersLogin))
+        if(success){
+          navigate('/dashboard')
+        }
       } catch (error) {
         console.log('User Login error', error)
       }
@@ -64,11 +65,10 @@ const Login = () => {
     const HandleSubmit = async (e)=> {
       e.preventDefault();
       try {
-        // const success = await dispatch(AddUser(signUp))
-        // if(success){
-        //   setLogin(false)
-        // }
-        console.log(signUp)
+        const success = await dispatch(addAdmin(signUp))
+        if(success){
+          setLogin(false)
+        }
       } catch (error) {
         console.log('User Register Error', error)
       }

@@ -6,6 +6,8 @@ import Profile from '../../Components/Profile/Profile'
 import { Route, Routes } from 'react-router-dom'
 import Edit from '../Edit/Edit'
 import AddCourse from '../../Components/Add Course/AddCourse'
+import ViewCourse from '../ViewCourse/ViewCourse'
+import AllUser from '../AllUser/AllUser'
 
 
 const Home = () => {
@@ -14,12 +16,16 @@ const Home = () => {
   
   return (
     <div>
-      
-      <Header/>
+      <Header setProfile={setProfile}/>
+      <Profile profile={profile} setProfile={setProfile}/>
+      <Routes>
+        <Route path='edit' element={<Edit/>} />
+        <Route path='addcourse' element={<AddCourse/>} />
+        <Route path='viewcourse' element={<ViewCourse/>} />
+        <Route path='allusers' element={<AllUser/>} />
+      </Routes>
       <Footer/>
-      <Profile/>
-      <Edit/>
-      <AddCourse/>
+      
            
     </div>
   )

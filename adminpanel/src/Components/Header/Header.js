@@ -1,20 +1,20 @@
 import React, { useEffect, useState } from 'react'
 import './Header.css'
+import {Link} from 'react-router-dom'
 
 
-const Header = () => {
+const Header = ({setProfile}) => {
 
   const [data, setData] = useState({})
 
   useEffect(()=>{
-    const storedUser = sessionStorage.getItem('User')
+    const storedUser = sessionStorage.getItem('admin')
     if(storedUser){
       setData(JSON.parse(storedUser))
     }
   },[])
 
-  console.log(data)
- 
+  
   return (
     <nav className="navbar navbar-expand-lg bg-white navbar-light shadow sticky-top p-0">
     
@@ -31,16 +31,16 @@ const Header = () => {
         <ul className="navbar-nav ms-auto p-4 ">
           
           <li className="nav-item">
-            <a className="nav-link active" aria-current="page" href="#">HOME</a>
+            <Link className="nav-link active" aria-current="page" href="">HOME</Link>
           </li>
           <li className="nav-item">
-            <a className="nav-link" href="#">USERS</a>
+            <Link className="nav-link" to="allusers">USERS</Link>
           </li>
           <li className="nav-item">
-            <a className="nav-link" href="#">COURSES</a>
+            <Link className="nav-link" to="viewcourse">COURSES</Link>
           </li>
           <li className="nav-item">
-            <a className="nav-link" href="#">ADD COURSES</a>
+            <Link className="nav-link" to="addcourse">ADD COURSES</Link>
           </li>
           <li className="nav-item">
             <a className="nav-link" href="#">CONTACT</a>
@@ -50,8 +50,8 @@ const Header = () => {
        
       </div>
 
-      <div className="profile me-3">
-        <img src={`http://localhost:5000/Images/User/${data.image}`} alt="User" />
+      <div className="profile me-3" onClick={()=> setProfile(true)}>
+        <img src={`http://localhost:5000/Images/Admin/${data.image}`} alt="User" />
       </div>
    
   </nav>

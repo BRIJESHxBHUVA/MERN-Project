@@ -1,27 +1,40 @@
 import React, { useEffect, useState } from 'react'
 import './Profile.css'
+import {useNavigate} from 'react-router-dom'
 
-const Profile = () => {
+
+const Profile = ({profile, setProfile}) => {
 
   const [data, setData] = useState({})
-
+  const navigate = useNavigate()
   useEffect(()=>{
-    const storedUser = sessionStorage.getItem('User')
+    const storedUser = sessionStorage.getItem('admin')
     if(storedUser){
-      setData(JSON.stringify(storedUser))
+      setData(JSON.parse(storedUser))
     }
   },[])
-  console.log(data)
+
+  const HandleLogout = ()=> {
+    navigate('/')
+    sessionStorage.clear('admin')
+    sessionStorage.clear('adminId')
+    sessionStorage.clear('adminToken')
+  }
+
+  const HandleEdit = ()=> {
+    navigate('edit')
+    setProfile(false)
+  }
 
   return (
-      
+      profile ? 
       <div className='profile-page'>
       <div className="profile-box">
-        <div className="close">
-      <i class="fa-solid fa-xmark"></i>
+        <div className="close" onClick={()=> setProfile(false)}>
+      <i className="fa-solid fa-xmark"></i>
         </div>
         <div className="profile-header">
-            <img src={`http://localhost:5000/Images/User/${data.image}`} alt="" />
+            <img src={`http://localhost:5000/Images/Admin/${data.image}`} alt="" />
             <h4>{data.name}</h4>
         </div>
         <div className="profile-body">
@@ -30,14 +43,15 @@ const Profile = () => {
             <p>Created AT: {data.createdAT}</p>
         </div>
         <div className="profile-footer">
-            <button style={{backgroundColor: 'skyblue', color: 'white'}}>EDIT</button>
+            <button style={{backgroundColor: 'skyblue', color: 'white'}} onClick={HandleEdit}>EDIT</button>
             <button style={{background: '#c74f4f', color: 'white'}}>DELETE</button>
-            <button style={{background: 'black', color: 'white'}}>LOGOUT</button>
+            <button style={{background: 'black', color: 'white'}} onClick={HandleLogout}>LOGOUT</button>
         </div>
       </div>
     </div>
      
-    
+    : ""
+
   )
 }
 
