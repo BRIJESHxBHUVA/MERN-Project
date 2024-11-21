@@ -8,6 +8,7 @@ import Edit from '../Edit/Edit'
 import AddCourse from '../../Components/Add Course/AddCourse'
 import ViewCourse from '../ViewCourse/ViewCourse'
 import AllUser from '../AllUser/AllUser'
+import CourseEdit from '../Edit/CourseEdit'
 
 
 const Home = () => {
@@ -20,6 +21,7 @@ const Home = () => {
       <Profile profile={profile} setProfile={setProfile}/>
       <Routes>
         <Route path='edit' element={<Edit/>} />
+        <Route path='editcourse' element={<CourseEdit/>} />
         <Route path='addcourse' element={<AddCourse/>} />
         <Route path='viewcourse' element={<ViewCourse/>} />
         <Route path='allusers' element={<AllUser/>} />

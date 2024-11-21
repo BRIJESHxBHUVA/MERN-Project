@@ -15,6 +15,7 @@ app.use(cors({
 app.use('/admin', require('./Routes/AdminRoutes'))
 app.use('/user', require('./Routes/UserRoutes'))
 
+app.use('/Images', express.static(path.join(__dirname, 'Images')));
 app.use('/Images/Admin', express.static(path.join(__dirname, 'Images/Admin')))
 app.use('/Images/Course', express.static(path.join(__dirname, 'Images/Course')))
 app.use('/Images/User', express.static(path.join(__dirname, 'Images/User')))

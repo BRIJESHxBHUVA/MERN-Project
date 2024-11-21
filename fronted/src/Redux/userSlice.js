@@ -16,7 +16,7 @@ export const userLogin = createAsyncThunk('user/userLogin', async(userdata, {rej
         sessionStorage.setItem('userToken', response.data.token)
         sessionStorage.setItem('userId', response.data.user._id)
         sessionStorage.setItem('User', JSON.stringify(response.data.user))
-
+        return response.data.data
     } catch (error) {
         return rejectWithValue(error.response.data.message)
     }
@@ -44,8 +44,40 @@ export const GetCourse = createAsyncThunk('user/GetCourse', async(_, {rejectWith
                 Authorization: `Bearer ${token}`
             }
         })
-        console.log(response.data.data)
         return response.data.data
+    } catch (error) {
+        return rejectWithValue(error.response.data.message)
+    }
+})
+
+export const editUser = createAsyncThunk('user/editUser', async(_, {rejectWithValue})=> {
+    try {
+        const token = getToken()
+        const id = sessionStorage.getItem('userId')
+        const response = await axios.get(`http://localhost:5000/user/edituser?id=${id}`, {
+            headers: {
+                Authorization : `Bearer ${token}`
+            }
+        })
+
+        return response.data.data
+    } catch (error) {
+        return rejectWithValue(error.response.data.message)
+    }
+})
+
+export const userEdit = createAsyncThunk('user/userEdit', async(data, {rejectWithValue})=> {
+    try {
+        const token = getToken()
+        const id = sessionStorage.getItem('userId')
+        const response = await axios.put(`http://localhost:5000/user/edit?id=${id}`, data, {
+            headers: {
+                "Content-Type" : "multipart/form-data",
+                Authorization : `Bearer ${token}`
+            }
+        })
+        console.log(response.data)
+        return response.data
     } catch (error) {
         return rejectWithValue(error.response.data.message)
     }
@@ -112,6 +144,42 @@ export const GetCourse = createAsyncThunk('user/GetCourse', async(_, {rejectWith
         })
 
         builder.addCase(GetCourse.rejected, (state, action)=> {
+            state.loading = false
+            state.error = action.payload
+        })
+
+
+        // For getting user data to update
+
+        builder.addCase(editUser.pending, (state, action)=> {
+            state.loading = true
+            state.error = null
+        })
+
+        builder.addCase(editUser.fulfilled, (state, action)=> {
+            state.loading = false
+            state.user = action.payload
+        })
+
+        builder.addCase(editUser.rejected, (state, action)=> {
+            state.loading = false
+            state.error = action.payload
+        })
+
+
+        // For update user data
+
+        builder.addCase(userEdit.pending, (state, action)=> {
+            state.loading = true
+            state.error = null
+        })
+
+        builder.addCase(userEdit.fulfilled, (state, action)=> {
+            state.loading = false
+            state.user = action.payload
+        })
+
+        builder.addCase(userEdit.rejected, (state, action)=> {
             state.loading = false
             state.error = action.payload
         })

@@ -37,7 +37,7 @@ const Login = () => {
     const HandleLogin = async (e)=> {
       e.preventDefault();
       try {
-        const success = await dispatch(adminLogin(usersLogin))
+        const success = await dispatch(adminLogin(usersLogin)).unwrap()
         if(success){
           navigate('/dashboard')
         }
@@ -83,7 +83,7 @@ const Login = () => {
                  <input type="password" name='password' placeholder='You Password' required onChange={handleLogin} />
                  <button type='submit'>Login</button>
                  <center><p>Create a new account <span onClick={()=> setLogin(true)} style={{color: '#06bbcc'}}>Click here</span></p></center>
-                {/* {error && <p>{error}</p>} */}
+                {error && <p>{error}</p>}
                 
              </form>
 
@@ -96,7 +96,7 @@ const Login = () => {
                 <input type="password" placeholder='You Password' name='password' value={signUp.password} required onChange={HandleChange} />
                 <input type="file" placeholder='You Image' name='image' onChange={HandleChange} required />
                 <button type='submit'>Sign Up</button>
-                {/* {error && <p>{error}</p>} */}
+                {error && <p>{error}</p>}
                <center> <p>Already have an account ? <span onClick={()=> setLogin(false)} style={{color: '#06bbcc'}}>Login here</span></p></center>
             </form>
 

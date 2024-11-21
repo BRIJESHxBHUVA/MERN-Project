@@ -92,6 +92,69 @@ export const editAdmin = createAsyncThunk('admin/editAdmin', async(data, {reject
     }
 })
 
+export const deleteCourse = createAsyncThunk('admin/deleteCourse', async(id, {rejectWithValue})=> {
+    try {
+        const token = getToken()
+        const response = await axios.delete(`http://localhost:5000/admin/deletecourse?id=${id}`, {
+            headers: {
+                Authorization: `Bearer ${token}`
+            }
+        })
+        console.log(response)
+        return response.data
+    } catch (error) {
+        return rejectWithValue(error.response.data.message)
+    }
+})
+
+export const addCourse = createAsyncThunk('admin/addCourse', async(data, {rejectWithValue})=> {
+    try {
+        const token = getToken()
+        const response = await axios.post('http://localhost:5000/admin/addcourse', data , {
+            headers: {
+                "Content-Type" : "multipart/form-data",
+                Authorization : `Bearer ${token}`
+            }
+        })
+        console.log(response)
+        return response.data
+    } catch (error) {
+        return rejectWithValue(error.response.data.message)
+    }
+})
+
+export const courseEdit = createAsyncThunk('admin/courseEdit', async(id, {rejectWithValue})=> {
+    try {     
+        const token = getToken()
+        const response = await axios.get(`http://localhost:5000/admin/editcourse?id=${id}`, {
+            headers: {
+                Authorization : `Bearer ${token}`
+            }
+        })
+        return response.data.data
+    } catch (error) {
+        return rejectWithValue(error.response.data.message)
+    }
+})
+
+export const editCourse = createAsyncThunk('admin/editCourse', async({id, data}, {rejectWithValue})=> {
+    try {
+        const token = getToken()
+        const response = await axios.put(`http://localhost:5000/admin/editedcourse?id=${id}`, data, {
+            headers: {
+                "Content-Type" : "multipart/form-data",
+                Authorization: `Bearer ${token}`
+            }
+        })
+        console.log(response)
+        return response.data
+    } catch (error) {
+        return rejectWithValue(error.response.data.message)
+    }
+})
+
+
+
 
 const initialState = {
     admins: [],
@@ -210,6 +273,80 @@ const adminSlice = createSlice({
         })
 
         builder.addCase(editAdmin.rejected, (state, action)=> {
+            state.loading = false
+            state.error = action.payload
+        })
+
+
+        // For delete course
+
+        builder.addCase(deleteCourse.pending, (state, action)=> {
+            state.loading = true
+            state.error = null
+        })
+
+        builder.addCase(deleteCourse.fulfilled, (state, action)=> {
+            state.loading = false
+        })
+
+        builder.addCase(deleteCourse.rejected, (state, action)=> {
+            state.loading = false
+            state.error = action.payload
+        })
+
+
+        // For add new course
+
+        builder.addCase(addCourse.pending, (state, action)=> {
+            state.loading = true
+            state.error = null
+        })
+
+        builder.addCase(addCourse.fulfilled, (state, action)=> {
+            state.loading = false
+            state.course.push(action.payload)
+        })
+
+        builder.addCase(addCourse.rejected, (state, action)=> {
+            state.loading = false
+            state.error = action.payload
+        })
+
+        // For getting course data to update
+
+
+        builder.addCase(courseEdit.pending, (state, action)=> {
+            state.loading = true
+            state.error = null
+        })
+
+        builder.addCase(courseEdit.fulfilled, (state, action)=> {
+            state.loading = false
+            state.course = action.payload
+        })
+
+        builder.addCase(courseEdit.rejected, (state, action)=> {
+            state.loading = false
+            state.error = action.payload
+        })
+
+
+        // For update course data
+
+        builder.addCase(editCourse.pending, (state, action)=> {
+            state.loading = true
+            state.error = null
+        })
+
+        builder.addCase(editCourse.fulfilled, (state, action)=> {
+            state.loading = false
+            const updatedCourseIndex = state.course.findIndex((c) => c._id === action.payload._id)
+            if(updatedCourseIndex !== -1){
+                state.course[updatedCourseIndex] = action.payload
+            }
+        })
+
+        builder.addCase(editCourse.rejected, (state, action)=> {
             state.loading = false
             state.error = action.payload
         })

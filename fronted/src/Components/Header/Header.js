@@ -13,7 +13,6 @@ const Header = ({setProfile}) => {
     }
   },[])
 
-  console.log(data)
  
   return (
     <nav className="navbar navbar-expand-lg bg-white navbar-light shadow sticky-top p-0">

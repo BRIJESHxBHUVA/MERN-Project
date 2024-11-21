@@ -69,7 +69,7 @@ const Edit = () => {
           <input type="email" placeholder="You Email" name="email" value={userUpdate.email} required onChange={handleChange} />
           <input type="text" placeholder="You Phone" name="phone" value={userUpdate.phone} required onChange={handleChange} />
           <input type="password" placeholder="You Password" name="password" value={userUpdate.password} required onChange={handleChange} />
-          <input type="file" placeholder="You Image" name="image" required />
+          <input type="file" placeholder="You Image" name="image" required onChange={handleChange} />
           <img src={`http://localhost:5000/Images/Admin/${admins.image}`} height={100} width={100} alt="Previos Image" />
           <button type="submit">UPDATE</button>
         </form>

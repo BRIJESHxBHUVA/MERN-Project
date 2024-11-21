@@ -8,12 +8,12 @@ const CourseSchema = mongoose.Schema({
         type: String,
         required: true
     },
-    image: {
-        type: String,
-        required: true
-    },
     numofvid: {
         type: Number,
+        required: true
+    },
+    image: {
+        type: String,
         required: true
     },
     createdAT: {

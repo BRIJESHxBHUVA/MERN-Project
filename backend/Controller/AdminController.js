@@ -65,12 +65,16 @@ module.exports.edit = async (req, res)=> {
     try {
 
         const editimage = await Admin.findById(req.query.id)
+  
         if(editimage.image){
             const oldImage = path.join(__dirname, '../Images/Admin/', editimage.image)
-            fs.unlinkSync(oldImage)
+            if(fs.existsSync(oldImage)){
+                fs.unlinkSync(oldImage)
+            }
         }
-        req.body.image = req.file.filename
 
+            req.body.image = req.file.filename      
+        
         const data = await Admin.findByIdAndUpdate(req.query.id, req.body)
         res.status(200).json({success: true, message: 'Profile edited successfully.', data})
     } catch (error) {
@@ -80,11 +84,12 @@ module.exports.edit = async (req, res)=> {
 
 module.exports.addcourse = async (req, res)=> {
     try {
-
+        
+        req.body.createdAT = moment().format('LLLL')
+        
         if(req.file){
             req.body.image = req.file.filename
         }
-        req.body.createdAT = moment().format('LLLL')
 
         const data = await Course.create(req.body)
         res.status(201).json({success: true, message: 'Course created successfully', data})

@@ -18,7 +18,7 @@ const userimg = multer({storage: storage}).single('image')
 router.post('/signup', userimg, UserCtl.signup)
 router.post('/login', UserCtl.login)
 router.get('/course', verifyToken ,UserCtl.course)
-router.post('/edituser', verifyToken ,UserCtl.edituser)
+router.get('/edituser', verifyToken ,UserCtl.edituser)
 router.put('/edit', verifyToken, userimg ,UserCtl.edit)
 
 module.exports = router

@@ -1,4 +1,0 @@
-1. create login and signup page
-2. create dashboard
-3. admin can add cource
-4. viewer can only view cource

@@ -1,23 +1,35 @@
 import React, { useEffect } from 'react'
 import './Course.css'
 import {useSelector, useDispatch} from 'react-redux'
-import { getCourse } from '../../Redux/adminSlice'
+import { courseEdit, deleteCourse, getCourse } from '../../Redux/adminSlice'
+import {useNavigate} from 'react-router-dom'
 
 const Course = () => {
 
 
   const dispatch = useDispatch()
+  const navigate = useNavigate()
   const {course, error} = useSelector((state)=> state.admin)
   
   useEffect(()=> {
     dispatch(getCourse())
-    console.log(course)
-  },[])
+    
+  },[dispatch])
+
+  const handleDeleteCourse = (id)=> {
+    dispatch(deleteCourse(id))
+  }
+
+  const handleEditCourse = (id)=> {
+    dispatch(courseEdit(id))
+    navigate('/dashboard/editcourse')
+    
+  }
 
 
   return (
     <div className='main-card'>
-    {course.map((el, i)=>(
+    {course.map((el, i)=> (
       <div className="card shadow" key={i}>
       <img src={`http://localhost:5000/Images/Course/${el.image}`} className="card-img-top" alt="Course Image" />
       <div className="card-body">
@@ -40,10 +52,10 @@ const Course = () => {
         <a href="#" className="btn text-light" style={{backgroundColor: '#08bbca'}}>
           VIEW
         </a>
-        <a href="#" className="btn text-light" style={{backgroundColor: '#08bbca'}}>
+        <a href="#" className="btn text-light" style={{backgroundColor: '#08bbca'}} onClick={()=> handleEditCourse(el._id)}>
           EDIT
         </a>
-        <a href="#" className="btn text-light" style={{backgroundColor: '#08bbca'}}>
+        <a href="#" className="btn text-light" style={{backgroundColor: '#08bbca'}} onClick={()=> handleDeleteCourse(el._id)}>
           DELETE
         </a>
         </div>

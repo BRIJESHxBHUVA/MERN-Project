@@ -1,18 +1,35 @@
 import React, { useEffect, useState } from 'react'
 import './Profile.css'
 import dp from '../../Images/carousel-1.jpg'
+import {useNavigate} from 'react-router-dom'
+import {useDispatch, useSelector} from 'react-redux'
+import { editUser } from '../../Redux/userSlice'
 
 const Profile = ({setProfile ,profile}) => {
 
   const [data, setData] = useState({})
 
+  const navigate = useNavigate()
+  const dispatch = useDispatch()
+
   useEffect(()=>{
     const storedUser = sessionStorage.getItem('User')
     if(storedUser){
-      setData(JSON.stringify(storedUser))
+      setData(JSON.parse(storedUser))
     }
   },[])
-  console.log(data)
+
+  const handleLogout = ()=> {
+    sessionStorage.clear('userToken')
+    sessionStorage.clear('userId')
+    sessionStorage.clear('User')
+    navigate('/')
+  }
+
+  const handleEdit = ()=> {
+    dispatch(editUser())
+    navigate('/user-editpage')
+  }
 
   return (
 
@@ -21,7 +38,7 @@ const Profile = ({setProfile ,profile}) => {
       <div className='profile-page'>
       <div className="profile-box">
         <div className="close" onClick={()=> setProfile(false)}>
-      <i class="fa-solid fa-xmark"></i>
+      <i className="fa-solid fa-xmark"></i>
         </div>
         <div className="profile-header">
             <img src={`http://localhost:5000/Images/User/${data.image}`} alt="" />
@@ -33,9 +50,9 @@ const Profile = ({setProfile ,profile}) => {
             <p>Created AT: {data.createdAT}</p>
         </div>
         <div className="profile-footer">
-            <button style={{backgroundColor: 'skyblue', color: 'white'}}>EDIT</button>
+            <button style={{backgroundColor: 'skyblue', color: 'white'}} onClick={handleEdit}>EDIT</button>
             <button style={{background: '#c74f4f', color: 'white'}}>DELETE</button>
-            <button style={{background: 'black', color: 'white'}}>LOGOUT</button>
+            <button style={{background: 'black', color: 'white'}} onClick={handleLogout}>LOGOUT</button>
         </div>
       </div>
     </div>
