@@ -3,7 +3,7 @@ import './Profile.css'
 import dp from '../../Images/carousel-1.jpg'
 import {useNavigate} from 'react-router-dom'
 import {useDispatch, useSelector} from 'react-redux'
-import { editUser } from '../../Redux/userSlice'
+import { editUser, IMAGE_URL } from '../../Redux/userSlice'
 
 const Profile = ({setProfile ,profile}) => {
 
@@ -41,7 +41,7 @@ const Profile = ({setProfile ,profile}) => {
       <i className="fa-solid fa-xmark"></i>
         </div>
         <div className="profile-header">
-            <img src={`http://localhost:5000/Images/User/${data.image}`} alt="" />
+            <img src={`${IMAGE_URL}/Images/User/${data.image}`} alt="" />
             <h4>{data.name}</h4>
         </div>
         <div className="profile-body">

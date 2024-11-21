@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import "./Section4.css";
 import img from "../../Images/about.jpg";
 import { useSelector, useDispatch } from "react-redux";
-import { GetCourse } from "../../Redux/userSlice";
+import { GetCourse, IMAGE_URL } from "../../Redux/userSlice";
 
 const Section4 = () => {
   const dispatch = useDispatch();
@@ -23,7 +23,7 @@ const Section4 = () => {
         {course.map((el, i) => (
           <div className="card" key={i}>
             <img
-              src={`http://localhost:5000/Images/Course/${el.image}`}
+              src={`${IMAGE_URL}/Images/Course/${el.image}`}
               className="card-img-top"
               alt="Course Image"
             />

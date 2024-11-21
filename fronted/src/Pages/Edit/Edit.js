@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import '../Login/Login.css'
 import {useDispatch, useSelector} from 'react-redux'
 import {useNavigate} from 'react-router-dom'
-import { editUser, userEdit } from "../../Redux/userSlice";
+import { editUser, IMAGE_URL, userEdit } from "../../Redux/userSlice";
 
 const Edit = () => {
 
@@ -71,7 +71,7 @@ const Edit = () => {
           <input type="text" placeholder="You Phone" name="phone" value={userUpdate.phone} required onChange={handleChange} />
           <input type="password" placeholder="You Password" name="password" value={userUpdate.password} required onChange={handleChange} />
           <input type="file" placeholder="You Image" name="image" required onChange={handleChange} />
-          <img src={`http://localhost:5000/Images/User/${userUpdate.image}`} height={100} width={100} alt="" />
+          <img src={`${IMAGE_URL}/Images/User/${userUpdate.image}`} height={100} width={100} alt="" />
           <button type="submit">UPDATE</button>
         </form>
       </div>

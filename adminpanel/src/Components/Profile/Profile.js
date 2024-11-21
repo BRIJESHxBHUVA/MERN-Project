@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import './Profile.css'
 import {useNavigate} from 'react-router-dom'
-
+import {IMG_URL} from '../../Redux/adminSlice'
 
 const Profile = ({profile, setProfile}) => {
 
@@ -34,7 +34,7 @@ const Profile = ({profile, setProfile}) => {
       <i className="fa-solid fa-xmark"></i>
         </div>
         <div className="profile-header">
-            <img src={`http://localhost:5000/Images/Admin/${data.image}`} alt="" />
+            <img src={`${IMG_URL}/Images/Admin/${data.image}`} alt="" />
             <h4>{data.name}</h4>
         </div>
         <div className="profile-body">

@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from 'react'
 import '../Login/Login.css'
-import { adminEdit, editAdmin, editCourse } from "../../Redux/adminSlice";
+import { adminEdit, editAdmin, editCourse, IMG_URL } from "../../Redux/adminSlice";
 import {useDispatch, useSelector} from 'react-redux'
 import {useNavigate} from 'react-router-dom'
 
 const CourseEdit = () => {
+
     const [courseUpdate, setCourseUpdate] = useState({
         name: '',
         description: '',
@@ -66,7 +67,7 @@ const CourseEdit = () => {
           <input type="text" placeholder="You Email" name="description" value={courseUpdate.description} required onChange={handleChange} />
           <input type="text" placeholder="You Phone" name="numofvid" value={courseUpdate.numofvid} required onChange={handleChange} />
           <input type="file" placeholder="You Image" name="image" required onChange={handleChange} />
-          <img src={`http://localhost:5000/Images/Course/${courseUpdate.image}`} height={100} width={100} alt="Previos Image" />
+          <img src={`${IMG_URL}/Images/Course/${courseUpdate.image}`} height={100} width={100} alt="Previos Image" />
           <button type="submit">UPDATE</button>
         </form>
       </div>

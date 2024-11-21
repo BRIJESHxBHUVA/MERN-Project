@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import './Header.css'
 import {Link} from 'react-router-dom'
-
+import {IMG_URL} from '../../Redux/adminSlice'
 
 const Header = ({setProfile}) => {
 
@@ -51,7 +51,7 @@ const Header = ({setProfile}) => {
       </div>
 
       <div className="profile me-3" onClick={()=> setProfile(true)}>
-        <img src={`http://localhost:5000/Images/Admin/${data.image}`} alt="User" />
+        <img src={`${IMG_URL}/Images/Admin/${data.image}`} alt="User" />
       </div>
    
   </nav>

@@ -1,5 +1,6 @@
 const mongoose = require('mongoose')
-mongoose.connect('mongodb://localhost:27017/e-Learning')
+mongoose.connect('mongodb+srv://bhuvabrijesh14:jTapR1UjKCo3Kdb3@cluster0.8fetf.mongodb.net/?retryWrites=true&w=majority&appName=e-Learning')
+
 const db = mongoose.connection
 
 db.once('open', (err)=> {

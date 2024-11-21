@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import './Header.css'
 import dp from '../../Images/carousel-1.jpg'
-
+import {IMAGE_URL} from '../../Redux/userSlice'
 const Header = ({setProfile}) => {
 
   const [data, setData] = useState({})
@@ -47,7 +47,7 @@ const Header = ({setProfile}) => {
       </div>
 
       <div className="profile me-3" onClick={()=> {setProfile(true)}}>
-        <img src={`http://localhost:5000/Images/User/${data.image}`} alt="User" />
+        <img src={`${IMAGE_URL}/Images/User/${data.image}`} alt="User" />
       </div>
    
   </nav>

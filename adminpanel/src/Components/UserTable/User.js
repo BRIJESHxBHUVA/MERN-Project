@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react'
 import './User.css'
 import {useDispatch, useSelector} from 'react-redux'
-import { getUsers } from '../../Redux/adminSlice'
+import { getUsers, IMG_URL } from '../../Redux/adminSlice'
 
 const User = () => {
 
@@ -34,7 +34,7 @@ const User = () => {
 
             <tr key={i}>
                 <td>{i+1}</td>
-                <td> <img src={`http://localhost:5000/Images/User/${el.image}`} height={100} width={100} alt="" /> </td>
+                <td> <img src={`${IMG_URL}/Images/User/${el.image}`} height={100} width={100} alt="" /> </td>
                 <td>{el.name}</td>
                 <td>{el.email}</td>
                 <td>{el.phone}</td>

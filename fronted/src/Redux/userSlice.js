@@ -9,9 +9,12 @@ const getToken = ()=> {
     )
 }
 
+const URL = 'http://localhost:5000/user'
+export const IMAGE_URL = 'http://localhost:5000'
+
 export const userLogin = createAsyncThunk('user/userLogin', async(userdata, {rejectWithValue})=>{
     try {
-        const response = await axios.post('http://localhost:5000/user/login', userdata)
+        const response = await axios.post(`${URL}/login`, userdata)
         console.log(response.data)
         sessionStorage.setItem('userToken', response.data.token)
         sessionStorage.setItem('userId', response.data.user._id)
@@ -24,7 +27,7 @@ export const userLogin = createAsyncThunk('user/userLogin', async(userdata, {rej
 
 export const AddUser = createAsyncThunk('user/AddUser', async(newuser, {rejectWithValue})=> {
     try {
-        const response = await axios.post('http://localhost:5000/user/signup', newuser, {
+        const response = await axios.post(`${URL}/signup`, newuser, {
             headers: {
                 'Content-Type' : 'multipart/form-data'
             }
@@ -39,7 +42,7 @@ export const AddUser = createAsyncThunk('user/AddUser', async(newuser, {rejectWi
 export const GetCourse = createAsyncThunk('user/GetCourse', async(_, {rejectWithValue})=>{
     try {
         const token = getToken()
-        const response = await axios.get('http://localhost:5000/user/course', {
+        const response = await axios.get(`${URL}/course`, {
             headers: {
                 Authorization: `Bearer ${token}`
             }
@@ -54,7 +57,7 @@ export const editUser = createAsyncThunk('user/editUser', async(_, {rejectWithVa
     try {
         const token = getToken()
         const id = sessionStorage.getItem('userId')
-        const response = await axios.get(`http://localhost:5000/user/edituser?id=${id}`, {
+        const response = await axios.get(`${URL}/edituser?id=${id}`, {
             headers: {
                 Authorization : `Bearer ${token}`
             }
@@ -70,7 +73,7 @@ export const userEdit = createAsyncThunk('user/userEdit', async(data, {rejectWit
     try {
         const token = getToken()
         const id = sessionStorage.getItem('userId')
-        const response = await axios.put(`http://localhost:5000/user/edit?id=${id}`, data, {
+        const response = await axios.put(`${URL}/edit?id=${id}`, data, {
             headers: {
                 "Content-Type" : "multipart/form-data",
                 Authorization : `Bearer ${token}`

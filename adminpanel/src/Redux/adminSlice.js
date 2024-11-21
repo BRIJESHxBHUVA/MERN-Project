@@ -9,9 +9,12 @@ const getToken = ()=> {
     )
 }
 
+const URL = 'http://localhost:5000/admin'
+export const IMG_URL = 'http://localhost:5000'
+
 export const adminLogin = createAsyncThunk('admin/adminLogin', async(data, {rejectWithValue})=> {
     try {
-        const response = await axios.post('http://localhost:5000/admin/login', data)
+        const response = await axios.post(`${URL}/login`, data)
     
         sessionStorage.setItem('adminToken', response.data.token)
         sessionStorage.setItem('adminId', response.data.user._id)
@@ -24,7 +27,7 @@ export const adminLogin = createAsyncThunk('admin/adminLogin', async(data, {reje
 
 export const addAdmin = createAsyncThunk('admin/addAdmin', async(data, {rejectWithValue})=> {
     try {
-        const response = await axios.post('http://localhost:5000/admin/signup', data, {
+        const response = await axios.post(`${URL}/signup`, data, {
             headers: {
                 "Content-Type": "multipart/form-data"
             }
@@ -38,7 +41,7 @@ export const addAdmin = createAsyncThunk('admin/addAdmin', async(data, {rejectWi
 
 export const getUsers = createAsyncThunk('admin/getUsers', async(_, {rejectWithValue})=>{
     try {
-        const response = await axios.get('http://localhost:5000/admin/alluser')
+        const response = await axios.get(`${URL}/alluser`)
        return response.data.data
     } catch (error) {
         return rejectWithValue(error.response.data.message)
@@ -48,7 +51,7 @@ export const getUsers = createAsyncThunk('admin/getUsers', async(_, {rejectWithV
 export const getCourse = createAsyncThunk('admin/getCourse', async (_, {rejectWithValue})=>{
     try {
         const token = getToken()
-        const response = await axios.get('http://localhost:5000/admin/course', {
+        const response = await axios.get(`${URL}/course`, {
             headers: {
                 Authorization : `Bearer ${token}`
             }
@@ -63,7 +66,7 @@ export const adminEdit = createAsyncThunk('admin/adminEdit', async (_, {rejectWi
     try {
         const id = sessionStorage.getItem('adminId')
         const token = getToken()
-        const response = await axios.get(`http://localhost:5000/admin/editdata?id=${id}`, {
+        const response = await axios.get(`${URL}/editdata?id=${id}`, {
             headers: {
                 Authorization : `Bearer ${token}`
             }
@@ -79,7 +82,7 @@ export const editAdmin = createAsyncThunk('admin/editAdmin', async(data, {reject
     try {
         const id = sessionStorage.getItem('adminId')
         const token = getToken()
-        const response = await axios.put(`http://localhost:5000/admin/edit?id=${id}`, data, {
+        const response = await axios.put(`${URL}/edit?id=${id}`, data, {
             headers: {
                 "Content-Type" : "multipart/form-data",
                 Authorization : `Bearer ${token}`
@@ -95,7 +98,7 @@ export const editAdmin = createAsyncThunk('admin/editAdmin', async(data, {reject
 export const deleteCourse = createAsyncThunk('admin/deleteCourse', async(id, {rejectWithValue})=> {
     try {
         const token = getToken()
-        const response = await axios.delete(`http://localhost:5000/admin/deletecourse?id=${id}`, {
+        const response = await axios.delete(`${URL}/deletecourse?id=${id}`, {
             headers: {
                 Authorization: `Bearer ${token}`
             }
@@ -110,7 +113,7 @@ export const deleteCourse = createAsyncThunk('admin/deleteCourse', async(id, {re
 export const addCourse = createAsyncThunk('admin/addCourse', async(data, {rejectWithValue})=> {
     try {
         const token = getToken()
-        const response = await axios.post('http://localhost:5000/admin/addcourse', data , {
+        const response = await axios.post(`${URL}/addcourse`, data , {
             headers: {
                 "Content-Type" : "multipart/form-data",
                 Authorization : `Bearer ${token}`
@@ -126,7 +129,7 @@ export const addCourse = createAsyncThunk('admin/addCourse', async(data, {reject
 export const courseEdit = createAsyncThunk('admin/courseEdit', async(id, {rejectWithValue})=> {
     try {     
         const token = getToken()
-        const response = await axios.get(`http://localhost:5000/admin/editcourse?id=${id}`, {
+        const response = await axios.get(`${URL}/editcourse?id=${id}`, {
             headers: {
                 Authorization : `Bearer ${token}`
             }
@@ -140,7 +143,7 @@ export const courseEdit = createAsyncThunk('admin/courseEdit', async(id, {reject
 export const editCourse = createAsyncThunk('admin/editCourse', async({id, data}, {rejectWithValue})=> {
     try {
         const token = getToken()
-        const response = await axios.put(`http://localhost:5000/admin/editedcourse?id=${id}`, data, {
+        const response = await axios.put(`${URL}/editedcourse?id=${id}`, data, {
             headers: {
                 "Content-Type" : "multipart/form-data",
                 Authorization: `Bearer ${token}`

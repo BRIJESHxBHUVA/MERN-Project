@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react'
 import './Course.css'
 import {useSelector, useDispatch} from 'react-redux'
-import { courseEdit, deleteCourse, getCourse } from '../../Redux/adminSlice'
+import { courseEdit, deleteCourse, getCourse, IMG_URL } from '../../Redux/adminSlice'
 import {useNavigate} from 'react-router-dom'
 
 const Course = () => {
@@ -31,7 +31,7 @@ const Course = () => {
     <div className='main-card'>
     {course.map((el, i)=> (
       <div className="card shadow" key={i}>
-      <img src={`http://localhost:5000/Images/Course/${el.image}`} className="card-img-top" alt="Course Image" />
+      <img src={`${IMG_URL}/Images/Course/${el.image}`} className="card-img-top" alt="Course Image" />
       <div className="card-body">
         <h5 className="card-title text-center">$149.00</h5>
         <div className="starts mt-3">
