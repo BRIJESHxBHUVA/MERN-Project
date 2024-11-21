@@ -9,8 +9,8 @@ const getToken = ()=> {
     )
 }
 
-const URL = 'https://mern-project-backend-qcya.onrender.com/user'
-export const IMAGE_URL = 'https://mern-project-backend-qcya.onrender.com'
+const URL = 'https://mern-project-nrmk.onrender.com/user'
+export const IMAGE_URL = 'https://mern-project-nrmk.onrender.com'
 
 export const userLogin = createAsyncThunk('user/userLogin', async(userdata, {rejectWithValue})=>{
     try {
