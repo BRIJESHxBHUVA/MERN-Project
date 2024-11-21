@@ -1,6 +1,8 @@
 const mongoose = require('mongoose')
-mongoose.connect('mongodb+srv://bhuvabrijesh14:jTapR1UjKCo3Kdb3@cluster0.8fetf.mongodb.net/?retryWrites=true&w=majority&appName=e-Learning')
-
+mongoose.connect('mongodb+srv://bhuvabrijesh14:jTapR1UjKCo3Kdb3@cluster0.8fetf.mongodb.net/?retryWrites=true&w=majority&appName=e-Learning', {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+})
 const db = mongoose.connection
 
 db.once('open', (err)=> {
