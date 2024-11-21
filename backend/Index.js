@@ -8,7 +8,6 @@ const cors = require('cors')
 app.use(express.urlencoded())
 app.use(express.json())
 app.use(cors({
-    origin: 'http://localhost:3000',
     credentials: true
 }))
 
