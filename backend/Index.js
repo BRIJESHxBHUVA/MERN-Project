@@ -5,10 +5,24 @@ const path = require('path')
 const db = require('./Database/db')
 const cors = require('cors')
 
+const allowedOrigins = [
+    'https://fronted-4w2rbynxd-brijeshxbhuvas-projects.vercel.app',
+    'https://adminpanel-ircep9pzl-brijeshxbhuvas-projects.vercel.app'
+]
+
 app.use(express.urlencoded())
 app.use(express.json())
+
 app.use(cors({
-    origin: 'https://fronted-4w2rbynxd-brijeshxbhuvas-projects.vercel.app',
+    origin: (origin, callback)=> {
+        if(!origin) return callback(null, true);
+
+        if(allowedOrigins.includes(origin)){
+            callback(null, true)
+        }else{
+            callback(new Error('Not allowed by CORS'))
+        }
+    },
     credentials: true
 }))
 
