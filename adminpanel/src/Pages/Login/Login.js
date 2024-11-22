@@ -39,7 +39,7 @@ const Login = () => {
       try {
         const success = await dispatch(adminLogin(usersLogin)).unwrap()
         if(success){
-          navigate('/dashboard')
+          navigate('/dashboard/allusers')
         }
       } catch (error) {
         console.log('User Login error', error)

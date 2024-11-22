@@ -54,6 +54,7 @@ const AddCourse = () => {
           <input type="text" placeholder="Number of Videos" name="numofvid" required onChange={handleChange} />
           <input type="file" placeholder="Course Image" name="image" required onChange={handleChange} />
           <button type="submit">ADD COURSE</button>
+          {error && <p>{error}</p>}
         </form>
       </div>
     </div>

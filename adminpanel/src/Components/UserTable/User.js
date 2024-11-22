@@ -30,6 +30,7 @@ const User = () => {
             </tr>
         </thead>
         <tbody>
+          
           {users.map((el, i)=>(
 
             <tr key={i}>
@@ -38,6 +39,7 @@ const User = () => {
                 <td>{el.name}</td>
                 <td>{el.email}</td>
                 <td>{el.phone}</td>
+                {error && <td colSpan={5}>{error}</td>}
             </tr>
           ))}
         </tbody>

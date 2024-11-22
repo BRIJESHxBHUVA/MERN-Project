@@ -74,6 +74,7 @@ const Edit = () => {
           <input type="file" placeholder="You Image" name="image" required onChange={handleChange} />
           <img src={`${IMG_URL}/Images/Admin/${admins.image}`} height={100} width={100} alt="Previos Image" />
           <button type="submit">UPDATE</button>
+          {error && <p>{error}</p>}
         </form>
       </div>
     </div>

@@ -29,6 +29,7 @@ const Course = () => {
 
   return (
     <div className='main-card'>
+      {error && <p>{error}</p>}
     {course.map((el, i)=> (
       <div className="card shadow" key={i}>
       <img src={`${IMG_URL}/Images/Course/${el.image}`} className="card-img-top" alt="Course Image" />
