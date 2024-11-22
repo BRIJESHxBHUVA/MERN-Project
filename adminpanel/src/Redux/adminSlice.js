@@ -9,8 +9,8 @@ const getToken = ()=> {
     )
 }
 
-const URL = 'http://localhost:5000/admin'
-export const IMG_URL = 'http://localhost:5000'
+const URL = 'https://mern-project-ifcb.onrender.com/admin'
+export const IMG_URL = 'https://mern-project-ifcb.onrender.com'
 
 export const adminLogin = createAsyncThunk('admin/adminLogin', async(data, {rejectWithValue})=> {
     try {
