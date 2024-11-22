@@ -8,6 +8,7 @@ const cors = require('cors')
 app.use(express.urlencoded())
 app.use(express.json())
 app.use(cors({
+    origin: 'https://fronted-4w2rbynxd-brijeshxbhuvas-projects.vercel.app',
     credentials: true
 }))
 
