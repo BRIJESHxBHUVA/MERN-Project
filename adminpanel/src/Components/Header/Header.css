@@ -3,8 +3,27 @@
     width: 60px;
     border-radius: 50%;
 }
+.second-profile{
+    height: 60px;
+    width: 60px;
+    border-radius: 50%;
+    display: none;
+}
 .profile img{
     height: 100%;
     width: 100%;
     border-radius: 50%;
+}
+.navbar-toggler-icon{
+    font-size: 18px;
+}
+
+
+@media only screen and (max-width: 991px){
+    .profile{
+        display: none;
+    }
+    .second-profile{
+        display: block;
+    }
 }

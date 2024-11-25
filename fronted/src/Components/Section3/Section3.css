@@ -37,3 +37,20 @@
     border: none;
     margin: 15px 0px;
 }
+
+
+@media only screen and (max-width: 980px){
+    .section3-box{
+        width: 100%;
+        flex-direction: column;
+        padding: 0px 10px;
+    }
+    .sec-img{
+        width: 100%;
+        background-size: contain;
+        background-repeat: no-repeat;
+    }
+    .sec3-content{
+        width: 100%;
+    }
+}

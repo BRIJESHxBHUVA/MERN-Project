@@ -44,6 +44,7 @@ const User = () => {
           ))}
         </tbody>
     </table>
+     
     </>
   )
 }

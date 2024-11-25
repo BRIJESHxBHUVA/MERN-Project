@@ -6,8 +6,8 @@ const db = require('./Database/db')
 const cors = require('cors')
 
 const allowedOrigins = [
-    'https://fronted-4w2rbynxd-brijeshxbhuvas-projects.vercel.app',
-    'https://adminpanel-ircep9pzl-brijeshxbhuvas-projects.vercel.app'
+    'https://e-learning-brijesh-bhuva-project.vercel.app',
+    'https://elearning-adminpanel-brijesh-bhuva-project.vercel.app'
 ]
 
 app.use(express.urlencoded())

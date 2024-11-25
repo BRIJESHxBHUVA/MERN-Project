@@ -24,6 +24,12 @@ const Header = ({setProfile}) => {
         eLEARNING
         </h2>
       </a>
+
+      <div className="profile me-3 second-profile" onClick={()=> setProfile(true)}>
+        <img src={`${IMG_URL}/Images/Admin/${data.image}`} alt="User" />
+      </div>
+
+
       <button className="navbar-toggler me-4" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span className="navbar-toggler-icon"></span>
       </button>

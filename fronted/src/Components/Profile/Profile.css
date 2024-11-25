@@ -25,6 +25,14 @@
     position: absolute;
     right: 2%;
 }
+.profile-box .delete{
+    background-color: black;
+    color: white;
+    padding: 0px 5px;
+    position: absolute;
+    right: 12%;
+    display: none;
+}
 .profile-header{
     width: 100%;
     display: flex;
@@ -59,4 +67,20 @@
     border: none;
     outline: none;
     margin: 0px 3px;
+}
+
+@media only screen and (max-width: 480px){
+    .profile-box .delete{
+        display: block;
+    }
+    .del{
+        display: none;
+    }
+    .profile-header img{
+        height: 50px;
+        width: 50px;
+    }
+    .profile-header h4{
+        font-size: 25px;
+    }
 }

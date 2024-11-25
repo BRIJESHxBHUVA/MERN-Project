@@ -9,6 +9,7 @@
     background-color: #c1d4d6;
  }
  .card{
+    min-width: 250px;
     max-width: 300px;
 }
 .card .card-img-top{
@@ -35,4 +36,11 @@
     align-items: center;
     justify-content: space-evenly;
     padding: 5px;
+}
+
+
+@media only screen and (max-width: 1200px){
+ .main-card{
+    width: 100%;
+ }   
 }

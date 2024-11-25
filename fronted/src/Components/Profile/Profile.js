@@ -40,6 +40,12 @@ const Profile = ({setProfile ,profile}) => {
         <div className="close" onClick={()=> setProfile(false)}>
       <i className="fa-solid fa-xmark"></i>
         </div>
+
+        <div className="delete">
+        <i class="fa-solid fa-trash"></i>
+        </div>
+
+
         <div className="profile-header">
             <img src={`${IMAGE_URL}/Images/User/${data.image}`} alt="" />
             <h4>{data.name}</h4>
@@ -51,7 +57,7 @@ const Profile = ({setProfile ,profile}) => {
         </div>
         <div className="profile-footer">
             <button style={{backgroundColor: 'skyblue', color: 'white'}} onClick={handleEdit}>EDIT</button>
-            <button style={{background: '#c74f4f', color: 'white'}}>DELETE</button>
+            <button style={{background: '#c74f4f', color: 'white'}} className='del'>DELETE</button>
             <button style={{background: 'black', color: 'white'}} onClick={handleLogout}>LOGOUT</button>
         </div>
       </div>
